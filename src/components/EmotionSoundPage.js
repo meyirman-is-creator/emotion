@@ -1,6 +1,5 @@
 // src/components/EmotionSoundPage.js
 import React, { useState } from 'react';
-import { Howl } from 'howler';
 import './EmotionSoundPage.css';
 
 // Импортируем изображения
@@ -10,19 +9,12 @@ import gnevImage from '../images/гнев.jpg';
 import strahImage from '../images/страх.jpg';
 import brezglivostImage from '../images/брезгливость.jpg';
 
-// Импортируем звуки
-import radostSound from '../sounds/радость.ogg';
-import pechalSound from '../sounds/печаль.ogg';
-import gnevSound from '../sounds/гнев.ogg';
-import strahSound from '../sounds/страх.ogg';
-import brezglivostSound from '../sounds/брезгливость.ogg';
-
 const emotions = [
-  { name: 'Радость', image: radostImage, sound: radostSound },
-  { name: 'Печаль', image: pechalImage, sound: pechalSound },
-  { name: 'Гнев', image: gnevImage, sound: gnevSound },
-  { name: 'Страх', image: strahImage, sound: strahSound },
-  { name: 'Брезгливость', image: brezglivostImage, sound: brezglivostSound },
+  { name: 'Радость', image: radostImage, sound: '/sounds/радость.ogg' },
+  { name: 'Печаль', image: pechalImage, sound: '/sounds/печаль.ogg' },
+  { name: 'Гнев', image: gnevImage, sound: '/sounds/гнев.ogg' },
+  { name: 'Страх', image: strahImage, sound: '/sounds/страх.ogg' },
+  { name: 'Брезгливость', image: brezglivostImage, sound: '/sounds/брезгливость.ogg' },
 ];
 
 function EmotionSoundPage() {
@@ -30,13 +22,15 @@ function EmotionSoundPage() {
 
   const playSound = (emotion) => {
     setPlayingSound(emotion.name);
-    const sound = new Howl({
-      src: [emotion.sound],
-      onend: () => {
-        setPlayingSound(null);
-      },
-    });
-    sound.play();
+    const audio = new Audio(emotion.sound);
+    audio.play();
+    audio.onended = () => {
+      setPlayingSound(null);
+    };
+    audio.onerror = () => {
+      console.error('Ошибка воспроизведения звука:', emotion.sound);
+      setPlayingSound(null);
+    };
   };
 
   return (
@@ -55,7 +49,9 @@ function EmotionSoundPage() {
             <p>{emotion.name}</p>
             {playingSound === emotion.name && (
               <div className="playing-indicator">
-                <span>🔊</span>
+                <span role="img" aria-label="Playing">
+                  🔊
+                </span>
               </div>
             )}
           </div>
