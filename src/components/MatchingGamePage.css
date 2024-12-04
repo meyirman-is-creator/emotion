@@ -56,7 +56,7 @@
 
 .matched-pair {
   display: flex;
-  flex-direction: column;
+  flex-direction: row; /* Изменено с column на row */
   align-items: center;
   animation: fadeInUp 0.5s ease-in-out;
 }
@@ -66,14 +66,11 @@
   height: 100px;
   border-radius: 50%;
   border: 4px solid #ff6347;
+  object-fit: cover; /* Добавлено для корректного отображения изображений */
+  margin: 0 10px; /* Добавлен отступ между изображениями */
 }
 
-.matched-pair p {
-  margin-top: 10px;
-  font-size: 20px;
-  color: #333;
-  font-weight: bold;
-}
+/* Удалены стили для .matched-pair p, так как они больше не нужны */
 
 .matching-container {
   display: flex;
@@ -136,23 +133,18 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.left-item img {
+.left-item img,
+.right-item img { /* Объединены стили для изображений в обоих колонках */
   width: 150px;
   height: 150px;
   border-radius: 15px;
   transition: transform 0.3s;
   z-index: 2;
-}
-
-.right-item p {
-  font-size: 24px;
-  color: #555;
-  text-align: center;
-  z-index: 2;
+  object-fit: cover; /* Обеспечивает корректное отображение изображений */
 }
 
 .left-item:hover img,
-.right-item:hover p {
+.right-item:hover img { /* Корректировка ховера для изображений */
   transform: scale(1.1);
 }
 
@@ -201,5 +193,16 @@
   .right-item {
     width: 60%;
     margin: 0 auto;
+  }
+
+  .matched-pair img {
+    width: 80px; /* Изменен размер изображений для меньших экранов */
+    height: 80px;
+    margin: 0 5px; /* Уменьшен отступ между изображениями */
+  }
+
+  .matched-pairs {
+    gap: 10px;
+    margin-bottom: 30px;
   }
 }

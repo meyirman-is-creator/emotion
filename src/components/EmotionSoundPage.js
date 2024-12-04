@@ -6,15 +6,13 @@ import './EmotionSoundPage.css';
 import radostImage from '../images/радость.jpg';
 import pechalImage from '../images/печаль.jpg';
 import gnevImage from '../images/гнев.jpg';
-import strahImage from '../images/страх.jpg';
 import brezglivostImage from '../images/брезгливость.jpg';
 
 const emotions = [
-  { name: 'Радость', image: radostImage, sound: '/sounds/радость.ogg' },
-  { name: 'Печаль', image: pechalImage, sound: '/sounds/печаль.ogg' },
-  { name: 'Гнев', image: gnevImage, sound: '/sounds/гнев.ogg' },
-  { name: 'Страх', image: strahImage, sound: '/sounds/страх.ogg' },
-  { name: 'Брезгливость', image: brezglivostImage, sound: '/sounds/брезгливость.ogg' },
+  { name: 'Радость', image: radostImage, sound: '/sounds/радость.mp3' },
+  { name: 'Печаль', image: pechalImage, sound: '/sounds/печаль.mp3' },
+  { name: 'Гнев', image: gnevImage, sound: '/sounds/гнев.mp3' },
+  { name: 'Брезгливость', image: brezglivostImage, sound: '/sounds/брезгливость.mp3' },
 ];
 
 function EmotionSoundPage() {
