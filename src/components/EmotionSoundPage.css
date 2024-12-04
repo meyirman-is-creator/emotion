@@ -1,0 +1,109 @@
+/* src/components/EmotionSoundPage.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.emotion-sound-page {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #fdfcfb, #e2d1c3);
+  min-height: 100vh;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.emotion-sound-page h1 {
+  font-size: 40px;
+  margin-bottom: 40px;
+  color: #333;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.emotions-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.emotion-item {
+  width: 200px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.emotion-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+}
+
+.emotion-item::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 0%;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.3);
+  z-index: 1;
+  transition: height 0.3s;
+}
+
+.emotion-item:hover::before {
+  height: 100%;
+}
+
+.emotion-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px 20px 0 0;
+}
+
+.emotion-item p {
+  margin: 0;
+  padding: 15px 0;
+  font-size: 20px;
+  color: #333;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 0 0 20px 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.emotion-item.playing {
+  animation: pulse 1s infinite;
+}
+
+.playing-indicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  z-index: 3;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 165, 0, 1);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+  }
+}
+
+@media (max-width: 768px) {
+  .emotions-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .emotion-item {
+    width: 80%;
+  }
+}
